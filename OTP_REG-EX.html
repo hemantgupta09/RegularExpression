@@ -1,0 +1,94 @@
+<style>
+	div{
+		background-color: cyan;
+		width: 400px;
+		text-align: center;
+		height: 250px;
+	}
+</style>
+<div>
+	<h3><u>Form validation through OTP</u></h3>
+	<h3 id="h3"></h3>
+	<h2 id="h2" style="color: red"></h2>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="" id="r1" /></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="" id="d1"><input type="checkbox" name="" onclick="view()"></td>
+		</tr>
+		<tr>
+			<td>Re-enter password</td>
+			<td><input type="password" name="" id="d2"></td>
+		</tr>
+		<tr>
+			<td>Enter-otp</td>
+			<td><input type="number" name="" id="num"></td>
+		</tr>
+	</table>
+	<input type="submit" name="click" onclick="show()">
+</div>
+<script>
+	var n=Math.random();
+    n=parseInt(n*100000);
+    document.getElementById('h3').innerHTML="OTP is "+n;
+	function show()
+	{
+		var name=document.getElementById('r1').value;
+		var pwd1=document.getElementById('d1').value;
+		var pwd2=document.getElementById('d2').value;
+		var otp=document.getElementById('num').value;
+		var p=/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[/#/@/$])){8,12}/;
+		var nm=/^[a-z]+$/;
+		if(name=="")
+		{
+			document.getElementById("h2").innerHTML="please enter the name";
+		}
+		else  if(!name.match(nm))
+		{
+			document.getElementById("h2").innerHTML="Name contains small laters only";
+		}
+		else if(pwd1=="")
+		{
+			document.getElementById("h2").innerHTML="please fillout password"
+		}
+		else if(!pwd1.match(p))
+		{
+			document.getElementById('h2').innerHTML="password should must min 8 char and one special character like(#/@/)";
+		}
+		else if(pwd2=="")
+		{
+			document.getElementById('h2').innerHTML="please re-enter password field";
+		}
+		else if(pwd1!=pwd2)
+		{
+			document.getElementById('h2').innerHTML="password missmatch";
+		}
+		else if(otp=="")
+		{
+			document.getElementById('h2').innerHTML="Fillout OTP";
+		}
+		else if(otp==n)
+		{
+			document.write(`<h1 align="center">your form submitted sucessfully</h1>`)
+		}
+		else
+		{
+			document.getElementById('h2').innerHTML="entered wrong OTP !"
+		}
+	}
+	function view()
+	{
+		pwd1=document.getElementById('d1');
+		if(pwd1.type=="password")
+		{                                                                                       
+			pwd1.type="text";
+		}
+		else
+		{
+			pwd1.type="password";
+		}
+	}
+</script>
